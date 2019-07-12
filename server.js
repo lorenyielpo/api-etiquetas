@@ -76,7 +76,7 @@ servidor.post('/consumidores', (request, response) => {
         })
 })
 
-servidor.patch('/consumidores/:id', (request, response) => {
+servidor.patch('/consumidores/:consumidorId', (request, response) => {
 
     const authHeader = request.get('authorization')
     let auth = false
@@ -95,8 +95,8 @@ servidor.patch('/consumidores/:id', (request, response) => {
     }
 
     if (auth) {
-        const { id } = request.params
-        consumidorController.update(id, params(request.body).only(parametrosPermitidos.update))
+        const { consumidorId } = request.params
+        consumidorController.update(consumidorId, params(request.body).only(parametrosPermitidos.update))
             .then(consumidor => {
                 if (!consumidor) { response.sendStatus(404) }
                 else { response.send(consumidor) }
