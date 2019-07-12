@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 // cada schema equivale collection
 const Schema = mongoose.Schema;
 const EtiquetasSchema = new Schema({
@@ -9,7 +9,7 @@ const EtiquetasSchema = new Schema({
   pais_de_fabricacao: { type: String, required: true }
 })
 
-const etiquetasModel = mongoose.model("etiquetas", EtiquetasSchema)
+const etiquetasModel = mongoose.model('etiquetas', EtiquetasSchema)
 
 module.exports = {
   etiquetasModel, 

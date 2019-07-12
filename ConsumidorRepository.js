@@ -1,5 +1,5 @@
 require('dotenv-safe').load()
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const MONGO_URL = process.env.MONGODB_URI
 
 function connect () {
@@ -7,12 +7,12 @@ function connect () {
     { useNewUrlParser: true },
     function (error) {
       if(error) {
-        console.error("Algo de errado não está certo: ", error)
+        console.error('Algo de errado não está certo: ', error)
       } else {
-        console.log("Conectado no mongoDB.")
+        console.log('Conectado no mongoDB.')
       }
     }
   );
 }
 
-module.exports = { connect }
+module.exports = connect

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { EtiquetasSchema } = require('./EtiquetasSchema')
 const Schema = mongoose.Schema;
 const ConsumidoresSchema = new Schema({
@@ -15,6 +15,6 @@ const ConsumidoresSchema = new Schema({
   etiquetas: [EtiquetasSchema]
 })
 
-const consumidoresModel = mongoose.model("consumidores", ConsumidoresSchema);
+const consumidoresModel = mongoose.model('consumidores', ConsumidoresSchema);
 
 module.exports = consumidoresModel;

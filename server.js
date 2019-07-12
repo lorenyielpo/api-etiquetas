@@ -33,7 +33,7 @@ servidor.get('/consumidores', (request, response) => {
             response.send(consumidorController)           
         })
         .catch(error => {
-            if (error.name === "CastError") {
+            if (error.name === 'CastError') {
                 response.sendStatus(400)
             } else {
                 response.sendStatus(500)
@@ -52,7 +52,7 @@ servidor.get('/consumidores/:consumidorId', (request, response) => {
             }
         })
         .catch(error => {
-            if (error.name === "CastError") {
+            if (error.name === 'CastError') {
                 response.sendStatus(400)
             } else {
                 response.sendStatus(500)
@@ -67,7 +67,7 @@ servidor.post('/consumidores', (request, response) => {
             response.send(_id)
         })
         .catch(error => {
-            if (error.name === "ValidationError") {
+            if (error.name === 'ValidationError') {
                 response.sendStatus(400)
             } else {
                 console.log(error)
@@ -102,7 +102,7 @@ servidor.patch('/consumidores/:id', (request, response) => {
                 else { response.send(consumidor) }
             })
             .catch(error => {
-                if (error.name === "MongoError" || error.name === "CastError") {
+                if (error.name === 'MongoError' || error.name === 'CastError') {
                     response.sendStatus(400)
                 } else {
                     response.sendStatus(500)
@@ -137,7 +137,7 @@ servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', (request, respon
                 response.send(_id)
             })
             .catch(error => {
-                if (error.name === "ValidationError") {
+                if (error.name === 'ValidationError') {
                     response.sendStatus(400)
                 } else {
                     console.log(error)
@@ -160,7 +160,7 @@ servidor.post('/consumidores/login', (request, response) => {
             response.send(respostaDoLogin)
         })
         .catch(error => {
-            if (error.name === "ValidationError") {
+            if (error.name === 'ValidationError') {
                 console.log(error)
                 response.sendStatus(400)
             } else {
