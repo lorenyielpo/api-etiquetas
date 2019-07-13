@@ -1,5 +1,5 @@
 require('dotenv-safe').load()
-const { connect } = require('./ConsumidorRepository')
+const  connect = require('./ConsumidorRepository')
 const consumidoresModel = require('./ConsumidorSchema')
 const { etiquetasModel } = require('./EtiquetasSchema')
 const bcrypt = require('bcryptjs')
