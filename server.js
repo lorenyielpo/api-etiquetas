@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const nodemailer = require("nodemailer")
 const servidor = express()
 const consumidorController = require('./ConsumidorController')
 const params = require('params')
@@ -17,6 +18,7 @@ const logger = (request, response, next) => {
     next()
 }
 
+servidor.use(bodyParser())
 servidor.use(cors())
 servidor.use(bodyParser.json())
 servidor.use(logger)
@@ -24,6 +26,17 @@ servidor.use(logger)
 servidor.get('/', (request, response) => {
     response.send('./')
 })
+
+const config = {
+    host: 'smtp.mailtrap.io',
+    port: '25',
+    auth: {
+        user: 'ea63b2d5698d08',
+        pass: '989b7fcc73329d'
+    }
+}
+
+const transporter = nodemailer.createTransport(config)
 
 // rotas Consumidores
 
@@ -168,6 +181,27 @@ servidor.post('/consumidores/login', (request, response) => {
                 response.sendStatus(500)
             }
         })
+})
+
+servidor.post('/send-email', (request, response)=>{
+    const {email} = request.body
+    const {nome} = request.body
+    const message = {
+        from: 'lorenyielpo@gmail.com',
+        to: `'${email}'`,
+        subject: 'Obrigada',
+        text: `'Olá, ${nome}Obrigada por se inscrever na nossa newsletter! <3'`
+    }
+
+    transporter.sendMail(message, (error, info)=>{
+        if(error){
+           return response.status(400).send('falhou')
+        }
+
+        return response.status(200).send('enviou')
+    })
+
+    return response.sendStatus(200).end()
 })
 
 servidor.listen(PORT)
