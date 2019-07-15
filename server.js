@@ -144,7 +144,8 @@ servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', (request, respon
 
     if (auth) {
         const { consumidorId } = request.params
-        consumidorController.addEtiqueta(consumidorId, request.body)
+        const etiqueta = params(request.body).only(parametrosPermitidos.addEtiqueta)
+        consumidorController.addEtiqueta(consumidorId, etiqueta)
             .then(consumidor => {
                 const _id = consumidor._id
                 response.send(_id)
