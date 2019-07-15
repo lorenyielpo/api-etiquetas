@@ -98,7 +98,7 @@ servidor.patch('/consumidores/:consumidorId', (request, response) => {
         const token = authHeader.split(' ')[1]
         jwt.verify(token, process.env.PRIVATE_KEY, function (error, decoded) {
             if (error) {
-                response.send(403).send(error)
+                response.send(403)
             } else {
                 auth = true
             }
@@ -126,14 +126,14 @@ servidor.patch('/consumidores/:consumidorId', (request, response) => {
 
 servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', async(request, response) => {
 
-    const authHeader = await request.get('authorization')
+    const authHeader = request.get('Authorization')
     let auth = false
 
     if (authHeader) {
         const token = authHeader.split(' ')[1]
         jwt.verify(token, process.env.PRIVATE_KEY, function (error, decoded) {
             if (error) {
-                response.status(403).send(token)
+                response.sendStatus(403)
             } else {
                 auth = true
             }
@@ -207,3 +207,7 @@ servidor.post('/send-email', (request, response)=>{
 
 servidor.listen(PORT)
 console.info(`Rodando na porta ${PORT}`)
+
+
+
+
