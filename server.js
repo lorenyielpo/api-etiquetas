@@ -124,9 +124,9 @@ servidor.patch('/consumidores/:consumidorId', (request, response) => {
     }
 })
 
-servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', (request, response) => {
+servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', async(request, response) => {
 
-    const authHeader = request.get('authorization')
+    const authHeader = await request.get('authorization')
     let auth = false
 
     if (authHeader) {
