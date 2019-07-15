@@ -47,7 +47,7 @@ servidor.get('/consumidores', (request, response) => {
         })
         .catch(error => {
             if (error.name === 'CastError') {
-                response.sendStatus(400)
+                response.status(400)
             } else {
                 response.sendStatus(500)
             }
@@ -98,7 +98,7 @@ servidor.patch('/consumidores/:consumidorId', (request, response) => {
         const token = authHeader.split(' ')[1]
         jwt.verify(token, process.env.PRIVATE_KEY, function (error, decoded) {
             if (error) {
-                response.send(403)
+                response.send(403).send(error)
             } else {
                 auth = true
             }
@@ -133,7 +133,7 @@ servidor.post('/consumidores/adicionar-etiqueta/:consumidorId', (request, respon
         const token = authHeader.split(' ')[1]
         jwt.verify(token, process.env.PRIVATE_KEY, function (error, decoded) {
             if (error) {
-                response.send(403)
+                response.status(403).send(token)
             } else {
                 auth = true
             }
